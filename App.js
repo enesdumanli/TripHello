@@ -1,52 +1,33 @@
-import React from 'react'
-import { StyleSheet, Text, ImageBackground, View } from 'react-native'
-import Triphello from './triphello.svg'
-const App = () => {
-    
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import WelcomeScreen from './components/WelcomeScreen'
+import MainPage from './components/MainPage'
+
+const Stack = createNativeStackNavigator()
+
+function App() {
     return (
-        <View
-            style={{
-                height: '100%',
-                flex: 1,
-            }}
-        >
-            <ImageBackground
-                style={{
-                    flex: 1,
-                    width: '100%',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                }}
-                source={require('./wallpaper.jpg')}
-            >
-                {/* <Triphello /> */}
-                <Text
-                    style={{
-                        color: 'rgb(128, 159, 209)',
-                        textAlign: 'center',
-                        top: 100,
-                        fontSize: 36,
-                        fontWeight: 'bold',
-                        fontFamily: 'sans-serif-condensed',
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="WelcomeScreen"
+                    component={WelcomeScreen}
+                    options={{
+                        headerShown: false,
                     }}
-                >
-                    TripHello
-                </Text>
-                <Triphello style={{ bottom: '55%' }} width={140} height={140} />
-            </ImageBackground>
-        </View>
+                />
+                <Stack.Screen
+                    name="MainPage"
+                    component={MainPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({
-    logo: {
-        width: 140,
-        left: 20,
-        height: 140,
-        marginTop: 50,
-        marginBottom: 50,
-        borderRadius: 250,
-    },
-})
 
 export default App
